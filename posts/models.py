@@ -8,6 +8,9 @@ class Post(models.Model):
     
     def __str__(self):
         return self.titulo
+    class Meta:
+        ordering = ['titulo']
+
 
 class Tag(models.Model):
     post = models.ManyToManyField(Post)
@@ -15,3 +18,5 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.nome
+    class Meta:
+        ordering = ['nome']
