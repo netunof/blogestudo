@@ -13,7 +13,16 @@
     {% if ultimos_posts %}
     <ul>
     {% for post in ultimos_posts %}
-        <li><a href="{% url 'post' post.id %}/">{{ post.titulo }}</a></li>
+        <li>
+            <div>
+                <a href="{% url 'post' post.id %}">{{ post.titulo }}</a>
+                <a href="{% url 'update' post.id %}"><button type="button">modificar</button></a>
+                <form action="{% url 'delete' post.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="apagar">
+                </form>
+            </div>
+        </li>
     {% endfor %}
     </ul>
     {% else %}

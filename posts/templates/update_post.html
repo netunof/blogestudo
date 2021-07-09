@@ -7,15 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'create' %}" method="post">
+    <form action="{% url 'update' post.id %}" method="post">
         {% csrf_token %}
         <fieldset>
-            <legend><h1>Nova publicação</h1></legend>
+            <legend><h1>Editar publicação</h1></legend>
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
             <label for="titulo">Título:</label><br>
-            <input type="text" name="titulo" id="titulo" required><br>
+            <input type="text" name="titulo" id="titulo" value="{{post.titulo}}" required><br>
             <label for="corpo">Corpo do texto:</label><br>
-            <textarea name="corpo" id="corpo" cols="30" rows="10"></textarea>
+            <textarea name="corpo" id="corpo" cols="30" rows="10">{{post.corpo}}</textarea>
         </fieldset>
         <input type="submit" value="Postar">
         </form>
