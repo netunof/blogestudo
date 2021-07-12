@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
     {% block corpo %}
     {% if ultimos_posts %}
-    <ul class="text-gray-700 m-2">
+    <ul class="text-gray-700 m-2 grid grid-cols-3">
     {% for post in ultimos_posts %}
-        <li class="rounded p-3 bg-gray-50 mt-1">
+        <li class="rounded p-3 bg-gray-50 m-1">
             <div class="grid grid-rows-2">
                 <a href="{% url 'post' post.id %}" class="grid grid-rows-2">
                     <span class="text-2xl hover:text-gray-400">{{ post.titulo }}</span>
