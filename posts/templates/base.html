@@ -4,29 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <a href="{% url 'create' %}">
-        <button type="button">Novo post</button>
-    </a>
-    {% if ultimos_posts %}
-    <ul>
-    {% for post in ultimos_posts %}
-        <li>
-            <div>
-                <a href="{% url 'post' post.id %}">{{ post.titulo }}</a>
-                <a href="{% url 'update' post.id %}"><button type="button">modificar</button></a>
-                <form action="{% url 'delete' post.id %}" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" value="apagar">
-                </form>
-            </div>
-        </li>
-    {% endfor %}
-    </ul>
-    {% else %}
-    <p>No posts are available.</p>
-    {% endif %}
+    <main class="flex flex-wrap">
+        <header class="bg-purple-900 w-full text-white">
+            <a href="{% url 'create' %}">
+                <button class="bg-green-400 rounded p-3 m-2 hover:bg-blue-400">Novo post</button>
+            </a>
+            <a href="">
+                <button class="bg-purple-400 rounded p-3 m-2 hover:bg-pink-400">Gerenciar tags</button>
+            </a>
+        </header>
+        <div class="container">
+            {% block corpo %}
+            {% endblock corpo %}
+        </div>
+        <footer class="bg-gray-300 w-full">
+            fdsa
+        </footer>
+    </main>
 </body>
 </html>

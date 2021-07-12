@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+    {% block corpo %}
+    {# caso exista id do post na requisição cria um formulário de edição #}
+    {% if post.id %}
+    <form action="{% url 'update' post.id %}" method="post">
+        {% csrf_token %}
+        <div class="text-gray-500 text-xl border border-green-200 p-3 grid grid-rows-7">
+            <span class="text-3xl">Modificar publicação</span>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" id="titulo" value="{{ post.titulo }}" required
+            class="text-black rounded bg-gray-50 border outline-none p-3 w-6/12">
+            <label for="corpo">Corpo do texto:</label>
+            <textarea name="corpo" id="corpo" cols="30" rows="10"
+            class="text-black rounded bg-gray-50 border outline-none p-3 w-6/12">{{ post.corpo }}</textarea>
+            <div>
+                <button type="submit" class="bg-green-300 rounded p-3 mt-1 text-gray-800 hover:bg-green-500 hover:text-white">Salvar</button>
+                <button type="reset" class="bg-gray-300 rounded p-3 mt-1 text-gray-800 hover:bg-gray-500 hover:text-white">Apagar</button>
+            </div>
+        </div>
+    </form>
+    {% else %}
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        <div class="text-gray-500 text-xl border border-green-200 p-3 grid grid-rows-7">
+            <span class="text-3xl">Nova publicação</span>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" id="titulo" required
+            class="text-black rounded bg-gray-50 border outline-none p-3 w-6/12">
+            <label for="corpo">Corpo do texto:</label>
+            <textarea name="corpo" id="corpo" cols="30" rows="10"
+            class="text-black rounded bg-gray-50 border outline-none p-3 w-6/12"></textarea>
+            <div>
+                <button type="submit" class="bg-green-300 rounded p-3 mt-1 text-gray-800 hover:bg-green-500 hover:text-white">Publicar</button>
+                <button type="reset" class="bg-gray-300 rounded p-3 mt-1 text-gray-800 hover:bg-gray-500 hover:text-white">Apagar</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+    {% endblock corpo %}

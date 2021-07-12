@@ -17,7 +17,7 @@ def create(request):
         else:
             return HttpResponse("""ERRO""")
     else: 
-        return render(request, 'create_post.html')
+        return render(request, 'forms/post_form.html')
 
 def read(request, post=0):
     if post:
@@ -26,13 +26,14 @@ def read(request, post=0):
     else:
         ultimos_posts = Post.objects.order_by('-publicado')
         postagens = {'ultimos_posts': ultimos_posts,}
-        return render(request, 'base.html', postagens)
+        print(ultimos_posts[1].corpo[0:100]+"...")
+        return render(request, 'index.html', postagens)
 
 def update(request, post):
     post = get_object_or_404(Post, pk=post) ## funciona igual o Post.objects.get(pk = post)
     form = PostForm(request.POST or None, instance=post)
     if request.method == 'GET':
-        return render(request, 'update_post.html', {'post':post})
+        return render(request, 'forms/post_form.html', {'post':post})
     else:
         if form.is_valid():
             form.save()
