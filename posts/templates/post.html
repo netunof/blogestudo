@@ -12,9 +12,7 @@
             </ul>
         </span>
         <div class="flex flex-wrap">
-            <a href="{% url 'update' post.id %}" class="m-1">
-                <button type="button" class="bg-yellow-100 rounded p-1 hover:bg-yellow-300">modificar</button>
-            </a>
+            <button type="button" id="modalUpdate" value="{{ post.id }}" class="bg-yellow-100 rounded p-1 hover:bg-yellow-300">modificar</button>
             <form action="{% url 'delete' post.id %}" method="POST">
                 {% csrf_token %}
                 <input type="submit" value="apagar" class="mt-1 bg-red-100 rounded p-1 cursor-pointer hover:bg-red-600 hover:text-white">

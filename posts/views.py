@@ -26,7 +26,6 @@ def read(request, post=0):
     else:
         ultimos_posts = Post.objects.order_by('-publicado')
         postagens = {'ultimos_posts': ultimos_posts,}
-        print(ultimos_posts[1].corpo[0:100]+"...")
         return render(request, 'index.html', postagens)
 
 def update(request, post):
